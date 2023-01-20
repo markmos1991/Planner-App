@@ -1,2 +1,2 @@
 # work-day-scheduler
-Third API Work Day Scheduler
+Third API Planner App with Jquery
