@@ -8,6 +8,23 @@ var today = moment();
 $("#currentDay").text(today.format("D MMM YYYY"));
 
 
+ // get the current hour and compare it to the hour div time
+ function checkTime(){
+    var now = moment();
+    var hour = now.hours();
+    var hourDivValue = parseInt($(hourDiv).text()) // get the hour value from hourDiv
+    // turn class on and off for future/present
+    if (hour === hourDivValue) { 
+    hourDiv.addClass("present");
+    } 
+    else if (hour < hourDivValue) {
+    hourDiv.addClass("future");
+    } else {
+        hourDiv.addClass("past");
+    }
+}
+
+
 
 // create 9 time blocks for the working day using a for loop
 function createTimeBlocks() {
@@ -17,21 +34,46 @@ for (var i = 9; i < 18; i++) {
   root.append(timeBlock);
   timeBlock.addClass("time-block");
   
-// create a div within the timeBlock for the hour
+// The hour div
+  
   var hourDiv = $("<div>");
-  hourDiv.addClass("hour col-2");
-  hourDiv.text(i + ":00");
+  hourDiv.addClass("hour col-1");
+  var hour = moment().hour(i).format("h A");
+  hourDiv.text(hour);
   timeBlock.append(hourDiv);
 
-//   create a div inside the timeblock for the input form with a space of col-10
-  var inputDiv = $("<div>");
-  inputDiv.addClass("textarea col-10");
+//  div inside the timeblock for the input 
+  var inputDiv = $("<input>");
+  inputDiv.addClass("textarea past col-8");
+// create event listener for on click to enter text?
+
+
   timeBlock.append(inputDiv);
-
-
+// Button div for saving to local storage
+  var buttonDiv = $("<button>");
+  buttonDiv.addClass("saveBtn col-2");
+  buttonDiv.text("Save");
+  timeBlock.append(buttonDiv);
 
 }
 }
-
 
 createTimeBlocks();
+
+
+
+
+// on save button click, save the text from textarea to local storage
+// function?
+// persist?
+$("saveBtn").click(function(){
+     
+    // add parent second child data to loacal storage so it stays in the textarea
+
+
+
+
+
+    // code to execute when button is clicked
+
+});
